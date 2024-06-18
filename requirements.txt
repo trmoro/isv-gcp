@@ -1,0 +1,7 @@
+requests
+numpy==1.23.5
+isv==0.3.16
+liftover==1.1.16
+pymongo==4.5.0
+flask
+google-cloud-logging
