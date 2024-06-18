@@ -87,7 +87,7 @@ def single():
 	cnv = {"ref": data[0], "chr": data[1], "start": int(data[2]), "end": int(data[3]), "type": data[4]}
 	compute_isv([cnv])
 	logger.log_text(str(round(time.time() - t,2)) + " ISV CNV-Hub finished !")
-	return {"text":"ISV Batch OK !"}
+	return {"text":"ISV Single OK !"}
 
 @app.route("/batch", methods=["GET"])
 def batch():
