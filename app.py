@@ -69,7 +69,7 @@ def compute_isv(genomics_coordinates):
 	for i in range(len(genomics_coordinates)):
 		q = genomics_coordinates[i]
 		title = q["ref"] + "-" + q["chr"] + "-" + str(q["start"]) + "-" + str(q["end"]) + "-" + str(q["type"])
-		save(title, {"title": title, "score": isv[i]})
+		save(title, {"title": title, "score": results[i]})
 		
 
 ##############Entrypoint for GCP
