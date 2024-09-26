@@ -10,8 +10,9 @@ logging_client = logging.Client()
 log_name = "isv-log"
 logger = logging_client.logger(log_name)
 
-from mongo import get_mongo_db
+from mongo import get_mongo_db, get_mongo_db2
 client_db, db = get_mongo_db()
+client_db2, db2 = get_mongo_db2()
 logger.log_text("ISV MongoDB connection opened")
 
 #Import liftover, copy in /tmp for GCP
@@ -38,6 +39,7 @@ def hg38to19(chromosome : str,pos : int):
 def save(title,row):
 	filt = {"title": title}
 	db["isv"].replace_one(filt , row, upsert=True)
+	db2["isv"].replace_one(filt , row, upsert=True)
 	logger.log_text(title + " ISV value updated !")
 
 #Compute ISV on batch
