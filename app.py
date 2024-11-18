@@ -1,6 +1,8 @@
 import os
 import time
 
+from bson import ObjectId
+
 # ISV scoring
 from isv import isv
 
@@ -95,8 +97,8 @@ def single():
 def batch():
 	t = time.time()
 	logger.log_text("ISV Batch")
-	batch_id = request.args.get("batch-id")
-	batch_data = db["cnvhub_batch"].find_one({'batchId':batch_id})["genomicCoordinates"]
+	batch_id = request.args.get("id")
+	batch_data = db["cnvhub_batch"].find_one({'_id':ObjectId(batch_id)})["genomicCoordinates"]
 	compute_isv(batch_data)
 	logger.log_text(str(round(time.time() - t,2)) + " ISV CNV-Hub finished !")
 	return {"text":"ISV Batch OK !"}
