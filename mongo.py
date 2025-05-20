@@ -3,7 +3,7 @@ import pymongo
 
 #Get Document Db
 def get_mongo_db():
-	client = pymongo.MongoClient(os.environ["MONGOKEY"], connect=False)
+	client = pymongo.MongoClient(os.environ["v1"], connect=False)
 	return client, client["cnvhub"]
 
 #Get Document Db
