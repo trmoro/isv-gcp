@@ -98,7 +98,12 @@ def batch():
 	t = time.time()
 	logger.log_text("ISV Batch")
 	batch_id = request.args.get("id")
-	batch_data = db["cnvhub_batch"].find_one({'_id':ObjectId(batch_id)})["genomicCoordinates"]
+	batch = None
+	if '-' not in batch_id:
+		batch = db["cnvhub_batch"].find_one({'_id':ObjectId(batch_id)})
+	else:
+		batch = db2["cnvhub_batch"].find_one({'batchId':batch_id})
+	batch_data = batch["genomicCoordinates"]
 	compute_isv(batch_data)
 	logger.log_text(str(round(time.time() - t,2)) + " ISV CNV-Hub finished !")
 	return {"text":"ISV Batch OK !"}
